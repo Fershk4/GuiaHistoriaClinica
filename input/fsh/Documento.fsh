@@ -51,11 +51,6 @@ Description: "Tributación y consumo de documentos clínicos de la historia clí
 //  * ^short = "texto que describe el encuentro"
 
 
-//* --- Titulo de documento -----
-* title MS
-* title ^short = "Título del documento generado"
-* title ^definition = "Título oficial del documento para que pueda ser legible."
-* title = "Documento de adherencia farmacológica"
 
 // Validador
 
