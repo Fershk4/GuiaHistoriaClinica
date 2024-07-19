@@ -42,20 +42,15 @@ Description: "Tributación y consumo de documentos clínicos de la historia clí
   * ^definition = "Fecha de edición del documento, cuando este fue modificado por el autor"
 
 //Autor
- * author 1..*
- // Es una referencia //
+* author 1..*
+* author only Reference(Paciente)
 
 
 //Organización 
 * custodian 0..1
- // Es una referencia //
+* custodian only Reference(Organizacion)
 
-//* encounter
-//* ---- Paciente ----- *
-// Validador
-//* event                                                                                                   
-
-//--------- Seccion ---------
+//--------- Seccion ---------*/
 * section 1..*
 * section ^slicing.discriminator[0].type = #pattern
 * section ^slicing.discriminator[=].path = "code"
@@ -70,118 +65,89 @@ Description: "Tributación y consumo de documentos clínicos de la historia clí
 * section.text 1.. MS
 * section.section ..0
 
-//--------- Secciones ---------
+//--------- Secciones ---------*/
 * section contains
     sectionAnammesis 0.. MS and
     sectionParametrosFisiologicos 1..1 MS and
-    sectionDiagnosticoPrincipal 0..1 MS and
-    sectionDiagnosticoSecundario 0..1 MS and
+    sectionDiagnostico 0..1 MS and
     sectionProcedimientos 0..1 MS and
     sectionTratamientosFarmacologicos 0.. MS and
     sectionInformeDeResultados 0..1 MS 
 
-/*------ Anammesis ------------*/    
+/*------------ Anammesis ------------*/    
 * section[sectionAnammesis] 
   * ^short = "Sección de medicamentos administrados"
   * ^definition = "Listado de medicamentos administrados en el perído medido."
   * title 1..1
   * text 1..1
-  * code = #001
-  //* entry only Reference(MedicationAdministration)
-  //* entry MS
-  //* entry ^slicing.discriminator[0].type = #profile
-  //* entry ^slicing.discriminator[=].path = "resolve()"
-  //* entry ^slicing.rules = #open
-  //* entry ^short = "Medicamentos administrados"
-  //* entry ^definition = "Es el listado de medicamentos administrados para el paciente."
-  //* entry contains MedAdministrados 0..* MS
-  //* entry[MedAdministrados] only Reference(MedicationAdministrationTake)
+  * code from VSSecciones
+    * coding 0..1
+      * code = #001
+  * entry only Reference(ObservacionAnamnesis)
+  * entry ^short = "Medicamentos administrados"
+  * entry ^definition = "Es el listado de medicamentos administrados para el paciente."
+ 
 
-
-/*------ Parametros Fisiologicos------------*/
+/*------------ Parametros Fisiologicos------------*/
 * section[sectionParametrosFisiologicos]
   * ^short = "Sección de Porcentaje de Adherencia"
   * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
   * title 1..1
   * text 1..1
-  * code = #002
-// * entry only Reference(Observation)
-// * entry MS
-// * entry ^slicing.discriminator[0].type = #profile
-// * entry ^slicing.discriminator[=].path = "resolve()"
-// * entry ^slicing.rules = #open
-// * entry ^short = "Porcentaje total de Adherencia"
-//  * entry ^definition = "El porcentaje de adherencia medido en el periodp observado para este indorme"
-// * entry contains PAdherencia 0..* MS
-// * entry[PAdherencia] only Reference(ObservacionPAderencia)
+  * code from VSSecciones
+    * coding 0..1
+      * code = #002
+  * entry only Reference(ObservacionParametros)
+  * entry ^short = "Parámetros fisiológicos"
+  * entry ^definition = "Parámetros fisiológicos del paciente"
 
-/*------ Diagnostico Principal------------*/
-* section[sectionDiagnosticoPrincipal] 
+/*------------ Diagnostico ------------*/
+* section[sectionDiagnostico] 
   * ^short = "Sección de Porcentaje de Adherencia"
   * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
   * title 1..1
   * text 1..1
-  * code = #003
-//  * entry only Reference(Observation)
-//  * entry MS
-//  * entry ^slicing.discriminator[0].type = #profile
-//  * entry ^slicing.discriminator[=].path = "resolve()"
-//  * entry ^slicing.rules = #open
-//  * entry ^short = "Porcentaje total de Adherencia"
-//  * entry ^definition = "El porcentaje de adherencia medido en el periodp observado para este indorme"
-//  * entry contains PAdherencia 0..* MS
-//  * entry[PAdherencia] only Reference(ObservacionPAderencia)
+  * code from VSSecciones
+    * coding 0..1
+      * code = #003
+  * entry only Reference(ObservacionDiagnostico)
+  * entry ^short = "Diagnostico"
+  * entry ^definition = "Parámetros fisiológicos del paciente"
 
   
-
-  /*------ Diagnostico Secundario------------*/
-* section[sectionDiagnosticoSecundario] 
+ /*------------ Procedimientos------------*/
+* section[sectionProcedimientos] 
   * ^short = "Sección de Porcentaje de Adherencia"
   * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
   * title 1..1
   * text 1..1
+  * code from VSSecciones
+    * coding 0..1
+      * code = #004
+  * entry only Reference(Procedimiento)
+  * entry ^short = "Procedimientos"
+  * entry ^definition = "Procedimientos realizados al paciente"
 
-  * code = #004
-//  * entry only Reference(Observation)
-//  * entry MS
-//  * entry ^slicing.discriminator[0].type = #profile
-//  * entry ^slicing.discriminator[=].path = "resolve()"
-//  * entry ^slicing.rules = #open
-//  * entry ^short = "Porcentaje total de Adherencia"
-//  * entry ^definition = "El porcentaje de adherencia medido en el periodp observado para este indorme"
-//  * entry contains PAdherencia 0..* MS
-//  * entry[PAdherencia] only Reference(ObservacionPAderencia)
-
-    /*------ Procedimientos------------*/
-* section[sectionProcedimientos]
-  * ^short = "Sección de Porcentaje de Adherencia"
-  * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
-  * title 1..1
-  * text 1..1
-  * code = #005
-//  * entry only Reference(Observation)
-//  * entry MS
-//  * entry ^slicing.discriminator[0].type = #profile
-//  * entry ^slicing.discriminator[=].path = "resolve()"
-//  * entry ^slicing.rules = #open
-//  * entry ^short = "Porcentaje total de Adherencia"
-//  * entry ^definition = "El porcentaje de adherencia medido en el periodp observado para este indorme"
-//  * entry contains PAdherencia 0..* MS
-//  * entry[PAdherencia] only Reference(ObservacionPAderencia)
-
-    /*------ Tratamientos Farmacologicos------------*/
+    /*------------ Tratamientos Farmacologicos------------*/
 * section[sectionTratamientosFarmacologicos]
   * ^short = "Sección de Porcentaje de Adherencia"
   * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
   * title 1..1
   * text 1..1
-  * code = #006
-//  * entry only Reference(Observation)
-//  * entry MS
-//  * entry ^slicing.discriminator[0].type = #profile
-//  * entry ^slicing.discriminator[=].path = "resolve()"
-//  * entry ^slicing.rules = #open
-//  * entry ^short = "Porcentaje total de Adherencia"
-//  * entry ^definition = "El porcentaje de adherencia medido en el periodp observado para este indorme"
-//  * entry contains PAdherencia 0..* MS
-//  * entry[PAdherencia] only Reference(ObservacionPAderencia)
+  * code from VSSecciones
+    * coding 0..1
+      * code = #005
+  * entry only Reference(TratamientoFarmacologico)
+  * entry ^short = "Tratamiento farmacológico"
+  * entry ^definition = "Tratamiento farmacológico recetado paciente"
+
+
+    /*------------ Informe de resultados------------*/
+* section[sectionInformeDeResultados]
+  * ^short = "Sección de Porcentaje de Adherencia"
+  * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
+  * title 1..1
+  * text 1..1
+  * code from VSSecciones
+    * coding 0..1
+      * code = #006
