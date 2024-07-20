@@ -9,8 +9,9 @@ Description: "Parámetros fisiologicos del paciente"
 * code from VSTipoDiagnostico
   * coding 0..*
     * code 0..1
-  * text
 * valueString 0..1
+
+* effectiveDateTime 1..1
 
 // Diagnostico secundario
 * component
@@ -18,3 +19,11 @@ Description: "Parámetros fisiologicos del paciente"
     * coding 0..*
       * code 0..1
   * valueString 0..1
+
+  
+
+* subject only Reference (Paciente)
+  * ^short = "Datos del paciente"
+
+* performer only Reference (Organizacion)
+  * ^short = "Datos del laboratorio"

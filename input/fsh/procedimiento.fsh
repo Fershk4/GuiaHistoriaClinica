@@ -7,7 +7,7 @@ Description: "Procedimientos clínicos"
 * subject only Reference(Paciente)
 
 * code 1..1
-* code from VSParametro
+* code from VSTipoProcedimiento
   * coding 0..*
     * code 0..1
   * text 0..1

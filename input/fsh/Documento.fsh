@@ -2,7 +2,7 @@ Profile: DocumentoClinico
 Parent: Composition
 Id: DocumentoClinico
 Title: "Tributación y Consumo de Documentos Clínicos en Atención Ambulatoria"
-Description: "Tributación y consumo de documentos clínicos de la historia clínica del paciente generados en la la atención ambulatoria."
+Description: "Documentos clínicos de historia clínica del paciente en la atención ambulatoria."
 
 //ID Doc
 * identifier 1..1  //
@@ -62,24 +62,27 @@ Description: "Tributación y consumo de documentos clínicos de la historia clí
 
 * section.code 1.. MS
 * section.code from VSSecciones
-* section.text 1.. MS
-* section.section ..0
+//* section.text 1.. MS
+//* section.section ..0
 
 //--------- Secciones ---------*/
 * section contains
-    sectionAnammesis 0.. MS and
-    sectionParametrosFisiologicos 1..1 MS and
-    sectionDiagnostico 0..1 MS and
-    sectionProcedimientos 0..1 MS and
-    sectionTratamientosFarmacologicos 0.. MS and
-    sectionInformeDeResultados 0..1 MS 
+    sectionAnammesis 1..* MS and
+    sectionParametrosFisiologicos 1..* MS and
+    sectionDiagnostico 1..* MS and
+    sectionProcedimientos 1..* MS and
+    sectionTratamientosFarmacologicos 1..* MS and
+    sectionInformeDeResultadosLaboratorio 1..* MS and
+    sectionInformeDeResultadosImagenes 1..* MS and
+    sectionInformeDeResultadosProcedimientos 1..* MS and
+    sectionInformeDeResultadosTratamientoNoFarmacologico 1..* MS 
 
 /*------------ Anammesis ------------*/    
-* section[sectionAnammesis] 
+* section[sectionAnammesis] 1..*
   * ^short = "Sección de medicamentos administrados"
-  * ^definition = "Listado de medicamentos administrados en el perído medido."
+  * ^definition = "Sección de medicamentos administrados."
   * title 1..1
-  * text 1..1
+  //* text 1..1
   * code from VSSecciones
     * coding 0..1
       * code = #001
@@ -89,11 +92,11 @@ Description: "Tributación y consumo de documentos clínicos de la historia clí
  
 
 /*------------ Parametros Fisiologicos------------*/
-* section[sectionParametrosFisiologicos]
-  * ^short = "Sección de Porcentaje de Adherencia"
-  * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
+* section[sectionParametrosFisiologicos] 1..*
+  * ^short = "Sección parametros fisiológicos"
+  * ^definition = "Sección parametros fisiológicos"
   * title 1..1
-  * text 1..1
+  //* text 1..1
   * code from VSSecciones
     * coding 0..1
       * code = #002
@@ -102,11 +105,11 @@ Description: "Tributación y consumo de documentos clínicos de la historia clí
   * entry ^definition = "Parámetros fisiológicos del paciente"
 
 /*------------ Diagnostico ------------*/
-* section[sectionDiagnostico] 
-  * ^short = "Sección de Porcentaje de Adherencia"
-  * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
+* section[sectionDiagnostico] 1..*
+  * ^short = "Sección de Diagnostico"
+  * ^definition = "Sección de Diagnostico"
   * title 1..1
-  * text 1..1
+  //* text 1..1
   * code from VSSecciones
     * coding 0..1
       * code = #003
@@ -116,11 +119,11 @@ Description: "Tributación y consumo de documentos clínicos de la historia clí
 
   
  /*------------ Procedimientos------------*/
-* section[sectionProcedimientos] 
-  * ^short = "Sección de Porcentaje de Adherencia"
-  * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
+* section[sectionProcedimientos] 1..*
+  * ^short = "Sección de Procedimientos"
+  * ^definition = "Sección de Procedimientos"
   * title 1..1
-  * text 1..1
+  //* text 1..1
   * code from VSSecciones
     * coding 0..1
       * code = #004
@@ -129,11 +132,11 @@ Description: "Tributación y consumo de documentos clínicos de la historia clí
   * entry ^definition = "Procedimientos realizados al paciente"
 
     /*------------ Tratamientos Farmacologicos------------*/
-* section[sectionTratamientosFarmacologicos]
-  * ^short = "Sección de Porcentaje de Adherencia"
-  * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
+* section[sectionTratamientosFarmacologicos] 1..*
+  * ^short = "Sección de tratamiento famacológico"
+  * ^definition = "Sección de tratamiento famacológico"
   * title 1..1
-  * text 1..1
+  //* text 1..1
   * code from VSSecciones
     * coding 0..1
       * code = #005
@@ -142,12 +145,44 @@ Description: "Tributación y consumo de documentos clínicos de la historia clí
   * entry ^definition = "Tratamiento farmacológico recetado paciente"
 
 
-    /*------------ Informe de resultados------------*/
-* section[sectionInformeDeResultados]
-  * ^short = "Sección de Porcentaje de Adherencia"
+    /*------------ Informe de resultado laboratorio------------*/
+* section[sectionInformeDeResultadosLaboratorio] 1..*
+  * ^short = "Sección de Informe de resultados"
   * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
   * title 1..1
-  * text 1..1
+  //* text 1..1
   * code from VSSecciones
     * coding 0..1
       * code = #006
+
+    /*------------ Informe de resultados imágenes------------*/
+* section[sectionInformeDeResultadosImagenes] 1..*
+  * ^short = "Sección de Informe de resultados"
+  * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
+  * title 1..1
+  //* text 1..1
+  * code from VSSecciones
+    * coding 0..1
+      * code = #007
+
+    /*------------ Informe de resultados procedimientos------------*/
+* section[sectionInformeDeResultadosProcedimientos] 1..*
+  * ^short = "Sección de Informe de resultados"
+  * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
+  * title 1..1
+  //* text 1..1
+  * code from VSSecciones
+    * coding 0..1
+      * code = #008
+
+    /*------------ Informe de resultados tratamiento no farmacológico------------*/
+* section[sectionInformeDeResultadosTratamientoNoFarmacologico] 1..*
+  * ^short = "Sección de Informe de resultados"
+  * ^definition = "Porcentaje de adherencia de los medicamentos administrados por el dispositivo"
+  * title 1..1
+  //* text 1..1
+  * code from VSSecciones
+    * coding 0..1
+      * code = #009
+
+

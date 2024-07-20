@@ -12,10 +12,10 @@ Description: "Tratamiento farmacológico administrado al paciente"
 
 * subject only Reference(Paciente)
 
-* effectivePeriod
-  * start	1..1 
+* effectivePeriod 1..1
+  * start	0..1 
     * ^short = "Fecha de inicio de tratamiento farmacológico"
-  * end 1..1
+  * end 0..1
     * ^short = "Fecha de termino de tratamiento farmacológico"
 
 * dosage 0..1

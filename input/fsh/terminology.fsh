@@ -21,7 +21,10 @@ Description: "Código de los tipos de secciones"
 * #003 "Diagnostico" " "
 * #004 "Procedimientos" " "
 * #005 "Tratamientos farmacologicos" " "
-* #006 "Informe de resultados" " "
+* #006 "Informe de resultados laboratorio" " "
+* #007 "Informe de resultados imágenes" " "
+* #008 "Informe de resultados procedimientos" " "
+* #009 "Informe de resultados tratamiento no farmacológico" " "
 
 
 ValueSet: VSSecciones
@@ -57,7 +60,7 @@ Description: "Tipo de observación"
 * ^jurisdiction = urn:iso:std:iso:3166#CL "Chile"
 
 //Código / display / descripción
-* #011 "Anammesis" " "
+* #84100007	 "Anammesis" " "
 * #022 "Parametros fisiologicos" " "
 
 
@@ -75,6 +78,7 @@ Description: "Value set tipo de observación"
 * ^jurisdiction = urn:iso:std:iso:3166#CL "Chile"
 
 * codes from system CSTipoObservacion
+
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////Tipo de parámetro//////////////////////////////////////
@@ -125,6 +129,83 @@ Description: "Parámetros fisiológios registrado"
 
 * codes from system CSParametro
 
+//////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////Tipo de unidad//////////////////////////////////////
+
+CodeSystem: CSTipoUnidad
+Id: CSTipoUnidad
+Title: "Tipos de unidad"
+Description: "Tipo de unidad"
+* ^caseSensitive = true 
+* ^version = "0.1.0"
+* ^status = #active
+* ^experimental = false
+* ^date = "2022-01-18T00:00:00-03:00"
+* ^contact.name = "HL7 Chile"
+* ^contact.telecom.system = #email
+* ^contact.telecom.value = "chair@hl7chile.cl"
+* ^jurisdiction = urn:iso:std:iso:3166#CL "Chile"
+
+//Código / display / descripción
+* #m "metro" " "
+* #kg "kilogramo" " "
+* #mmhg "milímetro de mercurio" " "
+* #C "°C" " "
+* #lpm "latido por minuto" " "
+* #rpm "respiración por minuto" " "
+
+ValueSet: VSTipoUnidad
+Id: VSTipoUnidad
+Title: "Tipo de unidad"
+Description: "Value set tipo de unidad"
+* ^version = "0.1.0"
+* ^status = #active
+* ^experimental = false
+* ^date = "2022-01-18T00:00:00-03:00"
+* ^contact.name = "HL7 Chile"
+* ^contact.telecom.system = #email
+* ^contact.telecom.value = "chair@hl7chile.cl"
+* ^jurisdiction = urn:iso:std:iso:3166#CL "Chile"
+
+* codes from system CSTipoUnidad
+
+//////////////////////////////////////////////////////////////////////////////////////////////
+/////////////////////////////////////Tipo de procedimiento//////////////////////////////////////
+
+CodeSystem: CSTipoProcedimiento
+Id: CSTipoProcedimiento
+Title: "Tipos de procedimiento"
+Description: "Tipo de procedimiento"
+* ^caseSensitive = true 
+* ^version = "0.1.0"
+* ^status = #active
+* ^experimental = false
+* ^date = "2022-01-18T00:00:00-03:00"
+* ^contact.name = "HL7 Chile"
+* ^contact.telecom.system = #email
+* ^contact.telecom.value = "chair@hl7chile.cl"
+* ^jurisdiction = urn:iso:std:iso:3166#CL "Chile"
+
+//* codes from system http://snomed.info/sct
+//Código / display / descripción
+* #444 "Procedimiento 1" " "
+* #666 "Procedimiento 2" " "
+* #888 "Procedimiento 3" " "
+
+ValueSet: VSTipoProcedimiento
+Id: VSTipoProcedimiento
+Title: "Tipo de procedimiento"
+Description: "Value set tipo de procedimiento"
+* ^version = "0.1.0"
+* ^status = #active
+* ^experimental = false
+* ^date = "2022-01-18T00:00:00-03:00"
+* ^contact.name = "HL7 Chile"
+* ^contact.telecom.system = #email
+* ^contact.telecom.value = "chair@hl7chile.cl"
+* ^jurisdiction = urn:iso:std:iso:3166#CL "Chile"
+
+* codes from system CSTipoProcedimiento
 
 //////////////////////////////////////////////////////////////////////////////////////////////
 /////////////////////////////////////Tipo de diagnostico//////////////////////////////////////
@@ -143,15 +224,16 @@ Description: "Tipo de diagnostico"
 * ^contact.telecom.value = "chair@hl7chile.cl"
 * ^jurisdiction = urn:iso:std:iso:3166#CL "Chile"
 
-//* codes from system http://snomed.info/sct
+//* codes from system http://snomed.info/sct   // por alguna razón que desconozco no funciona
+
 //Código / display / descripción
-* #830 "Diagnostico principal" " "
-* #294 "Diagnostico secundario" " "
+* #4556007 "Gastritis" " " //
+* #363746003 "Faringitis aguda" " " //
 
 ValueSet: VSTipoDiagnostico
 Id: VSTipoDiagnostico
-Title: "Tipo de observación"
-Description: "Value set tipo de observación"
+Title: "Tipo de diagnostico"
+Description: "Value set tipo de diagnostico"
 * ^version = "0.1.0"
 * ^status = #active
 * ^experimental = false
@@ -213,8 +295,8 @@ Description: "Value set con códigos de tipo de identificador"
 
 CodeSystem: CSPrincipioActivo
 Id: CSPrincipioActivo
-Title: "Tipos de observación"
-Description: "Tipo de observación"
+Title: "Principio activo"
+Description: "Codesystem de principio activo del medicamento"
 * ^caseSensitive = true 
 * ^version = "0.1.0"
 * ^status = #active
@@ -242,8 +324,8 @@ Description: "Tipo de observación"
 
 ValueSet: VSPrincipioActivo
 Id: VSPrincipioActivo
-Title: "Tipo de observación"
-Description: "Value set tipo de observación"
+Title: "Principio activo"
+Description: "Value set de principio activo del medicamento"
 * ^version = "0.1.0"
 * ^status = #active
 * ^experimental = false
@@ -260,8 +342,8 @@ Description: "Value set tipo de observación"
 
 CodeSystem: CSUnidadAsistencial
 Id: CSUnidadAsistencial
-Title: "Tipos de observación"
-Description: "Tipo de observación"
+Title: "Forma farmacéutica"
+Description: "Forma farmacéutica y unidades de medidas"
 * ^caseSensitive = true 
 * ^version = "0.1.0"
 * ^status = #active
@@ -309,8 +391,8 @@ Description: "Tipo de observación"
 
 ValueSet: VSUnidadAsistencial
 Id: VSUnidadAsistencial
-Title: "Tipo de observación"
-Description: "Value set tipo de observación"
+Title: "Forma farmaceutica"
+Description: "Forma farmacéutica y unidades de medidas"
 * ^version = "0.1.0"
 * ^status = #active
 * ^experimental = false
@@ -327,8 +409,8 @@ Description: "Value set tipo de observación"
 
 CodeSystem: CSViaAdministracion
 Id: CSViaAdministracion
-Title: "Tipos de observación"
-Description: "Tipo de observación"
+Title: "Vía de administración"
+Description: "Codesystem de vía de administración de los medicamentos"
 * ^caseSensitive = true 
 * ^version = "0.1.0"
 * ^status = #active
@@ -416,8 +498,8 @@ Description: "Tipo de observación"
 
 ValueSet: VSViaAdministracion
 Id: VSViaAdministracion
-Title: "Tipo de observación"
-Description: "Value set tipo de observación"
+Title: "Vía de administración"
+Description: "Value set de vía de administración de los medicamentos"
 * ^version = "0.1.0"
 * ^status = #active
 * ^experimental = false
@@ -428,3 +510,4 @@ Description: "Value set tipo de observación"
 * ^jurisdiction = urn:iso:std:iso:3166#CL "Chile"
 
 * codes from system CSViaAdministracion
+
